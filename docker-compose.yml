@@ -1,0 +1,36 @@
+services:
+  spark:
+    build: .
+    container_name: projeto-aws-ed
+    volumes:
+      - ./scripts:/repositorio
+    ports:
+      - "8888:8888"
+    environment:
+      AWS_ACCESS_KEY_ID: test
+      AWS_SECRET_ACCESS_KEY: test
+      AWS_DEFAULT_REGION: sa-east-1
+    depends_on:
+      - localstack
+    command:
+      [
+        "jupyter",
+        "notebook",
+        "--ip=0.0.0.0",
+        "--port=8888",
+        "--no-browser",
+        "--allow-root",
+        "--NotebookApp.token="
+      ]
+
+  localstack:
+    image: localstack/localstack:latest
+    container_name: localstack
+    ports:
+      - "4566:4566"
+    environment:
+      SERVICES: s3
+      DEFAULT_REGION: sa-east-1
+    volumes:
+      - ./localstack-data:/var/lib/localstack
+      - /var/run/docker.sock:/var/run/docker.sock
