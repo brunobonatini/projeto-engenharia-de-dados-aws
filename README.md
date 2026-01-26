@@ -61,7 +61,7 @@ O arquivo .env já vem configurado para execução local com LocalStack:
 
 O Docker ou Docker Desktop precisa estar em execução.
 
-Na raiz do projeto (pasta seu-local/projeto-aws-etl), abra um terminal ou prompt de comando e execute:
+Na raiz do projeto (pasta seu-local/projeto-engenharia-de-dados-aws), abra um terminal ou prompt de comando e execute:
 
 docker compose up -d --build
 
