@@ -125,7 +125,9 @@ aws --endpoint-url=http://localstack:4566 s3 ls s3://data-lake-local/
 Exemplo de estrutura esperada:
 
 raw/
+
 stage/
+
 analytics/
 
 
