@@ -57,7 +57,32 @@ Para execução local com LocalStack, crie o arquivo .env na pasta /scripts/proj
 Para execução em AWS real, basta ajustar as credenciais e remover o endpoint
 
 
+<<<<<<< Updated upstream
 # 4. Subir o Ambiente com Docker
+=======
+#3. Configuração de Variáveis de Ambiente
+
+O arquivo .env já vem configurado para execução local com LocalStack:
+
+ENV=local
+
+AWS_REGION=sa-east-1
+AWS_ACCESS_KEY_ID=test
+AWS_SECRET_ACCESS_KEY=test
+AWS_ENDPOINT_URL=http://localstack:4566
+
+S3_BUCKET=data-lake-local
+S3_RAW_PATH=raw
+S3_STAGE_PATH=stage
+S3_ANALYTICS_PATH=analytics
+
+🔹 Não altere essas variáveis para execução local
+
+🔹 Para execução em AWS real, basta ajustar as credenciais e remover o endpoint
+
+
+#4. Subir o Ambiente com Docker
+>>>>>>> Stashed changes
 
 O Docker ou Docker Desktop precisa estar em execução.
 
