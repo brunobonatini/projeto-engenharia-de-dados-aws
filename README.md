@@ -1,4 +1,7 @@
-Autor: Bruno Spagnol Bonatini
+[![author](https://img.shields.io/badge/author-brunobonatini-red.svg)](https://www.linkedin.com/in/bsbonatini)
+
+![1688009391915](https://github.com/brunobonatini/brunobonatini/assets/105396325/9d202763-d8cc-4be2-9791-11007b3eedfb)
+
 Projeto: Engenharia de dados com Docker, Python, Spark, Delta, SQL, LocalStack e AWS
 
 #Como Executar o Projeto
