@@ -57,6 +57,7 @@ Para execução local com LocalStack, crie o arquivo .env na pasta /scripts/proj
 Para execução em AWS real, basta ajustar as credenciais e remover o endpoint
 
 
+<<<<<<< Updated upstream
 # 4. Subir o Ambiente com Docker
 
 O Docker ou Docker Desktop precisa estar em execução.
