@@ -487,4 +487,40 @@ As decisões técnicas priorizaram:
 
 	* Facilidade de entendimento para fins de avaliação técnica
 
+
+# Conclusão e Aprendizados
+
+O desenvolvimento deste projeto permitiu a consolidação prática de conceitos fundamentais e avançados de Engenharia de Dados, indo além da simples construção de um pipeline e abordando preocupações reais de ambientes produtivos.
+
+Ao longo da implementação, foi possível compreender na prática a importância de uma arquitetura bem definida por camadas (Raw, Stage e Analytics), garantindo rastreabilidade dos dados, separação de responsabilidades e facilidade de depuração. A camada Raw preserva os dados brutos com histórico completo, enquanto a Stage aplica regras de qualidade, tipagem e deduplicação, e a camada Analytics entrega dados prontos para consumo analítico.
+
+O uso do Apache Spark evidenciou seu papel central no processamento distribuído, mesmo em um ambiente local, além de destacar cuidados importantes relacionados a configuração, gerenciamento de memória e integração com sistemas externos como o S3. A adoção do Delta Lake trouxe ganhos claros em confiabilidade, permitindo controle transacional, versionamento dos dados e processamento incremental via MERGE, simulando cenários reais de atualização contínua de dados.
+
+Outro aprendizado relevante foi a implementação de validações e testes de qualidade de dados, tanto no código (validações manuais e regras de negócio) quanto por meio de testes automatizados com Pytest e Spark, reforçando a importância de tratar dados como um ativo confiável. Esses testes permitem identificar rapidamente problemas como dados nulos, duplicidades e quebras de integridade referencial.
+
+O projeto também reforçou a importância da observabilidade, com uma estratégia de logs estruturados que possibilita acompanhar a execução completa do pipeline, identificar falhas e analisar métricas de processamento. Além disso, o uso de Docker e LocalStack demonstrou como é possível simular ambientes de nuvem de forma eficiente, garantindo reprodutibilidade e reduzindo dependências externas durante o desenvolvimento.
+
+Por fim, a utilização de Spark SQL e Jupyter Notebooks como camada de validação e exploração analítica mostrou-se uma alternativa eficaz para simular funcionalidades de catálogo de dados e consultas analíticas, aproximando o projeto de um cenário real de consumo via ferramentas como Athena.
+
+
+# Possíveis Melhorias e Evoluções
+
+Embora o projeto atenda plenamente aos objetivos propostos, diversas evoluções podem ser implementadas para torná-lo ainda mais robusto e próximo de um ambiente corporativo:
+
+	* Orquestração do pipeline com ferramentas como Apache Airflow, AWS Step Functions ou Prefect, permitindo agendamento, dependências entre tarefas e monitoramento visual.
+
+	* Catálogo de dados completo, integrando de forma nativa o AWS Glue Data Catalog (em ambiente real), com versionamento de schemas e documentação automática das tabelas.
+
+	* Camada de qualidade de dados mais avançada, utilizando frameworks como Great Expectations ou Deequ para regras declarativas e métricas de qualidade.
+
+	* Observabilidade aprimorada, com métricas de performance, tempo de execução por etapa e integração com ferramentas de monitoramento.
+
+	* Segurança e governança, incluindo controle de acesso por camadas, mascaramento de dados sensíveis e políticas de retenção.
+
+	* Escalabilidade, adaptando o projeto para execução em clusters Spark distribuídos (EMR, Databricks ou Kubernetes).
+
+	* CI/CD, automatizando testes, validações e builds do ambiente com pipelines de integração contínua.
+
+	* Camada semântica, preparando os dados para consumo por ferramentas de BI com métricas padronizadas e regras de negócio centralizadas.
+
 O projeto foi desenvolvido pensando em escalabilidade, governança e qualidade de dados, mesmo sendo um ambiente local e controlado.
