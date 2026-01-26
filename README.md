@@ -48,6 +48,7 @@ Verificar o WSL do Windows: https://docs.docker.com/desktop/setup/install/window
 
 <img width="808" height="534" alt="image" src="https://github.com/user-attachments/assets/2f1d4fc2-dbdd-4f5d-bf88-0371d290647e" />
 
+
 # 3. Configuração de Variáveis de Ambiente
 
 Para execução local com LocalStack, crie o arquivo .env na pasta /scripts/projeto/:
