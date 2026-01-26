@@ -50,11 +50,11 @@ Verificar o WSL do Windows: https://docs.docker.com/desktop/setup/install/window
 
 # 3. Configuração de Variáveis de Ambiente
 
-O arquivo .env já vem configurado para execução local com LocalStack:
+Para execução local com LocalStack, crie o arquivo .env na pasta /scripts/projeto/:
 
-🔹 Não altere essas variáveis para execução local
+<img width="461" height="274" alt="image" src="https://github.com/user-attachments/assets/7205a345-623d-4c3e-8e72-3fdaefaab2a3" />
 
-🔹 Para execução em AWS real, basta ajustar as credenciais e remover o endpoint
+Para execução em AWS real, basta ajustar as credenciais e remover o endpoint
 
 
 # 4. Subir o Ambiente com Docker
