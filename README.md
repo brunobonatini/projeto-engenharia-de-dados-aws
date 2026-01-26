@@ -52,19 +52,8 @@ Verificar o WSL do Windows: https://docs.docker.com/desktop/setup/install/window
 
 O arquivo .env já vem configurado para execução local com LocalStack:
 
-ENV=local
-
-AWS_REGION=sa-east-1
-AWS_ACCESS_KEY_ID=test
-AWS_SECRET_ACCESS_KEY=test
-AWS_ENDPOINT_URL=http://localstack:4566
-
-S3_BUCKET=data-lake-local
-S3_RAW_PATH=raw
-S3_STAGE_PATH=stage
-S3_ANALYTICS_PATH=analytics
-
 🔹 Não altere essas variáveis para execução local
+
 🔹 Para execução em AWS real, basta ajustar as credenciais e remover o endpoint
 
 
@@ -165,24 +154,6 @@ Você encontrará notebooks para:
 http://localhost:8888
 
 Na pasta /projeto/src/athena contém uma query analítica para Athena:
-
-spark.sql("""
-SELECT
-    estado,
-    COUNT(*) AS total_clientes,
-    ROUND(AVG(idade),1) AS idade_media
-FROM (
-    SELECT
-        CASE
-            WHEN estado = 'SPP' THEN 'SP'
-            ELSE estado
-        END AS estado,
-        idade
-    FROM clientes.clientes_analytics
-)
-GROUP BY estado
-ORDER BY total_clientes DESC
-""").show()
 
 Esta query pode ser executada no Jupyter Notebook:
 
