@@ -1,12 +1,32 @@
 [![author](https://img.shields.io/badge/author-brunobonatini-red.svg)](https://www.linkedin.com/in/bsbonatini)
 
-Projeto: Engenharia de dados com Docker, Python, Spark, Delta, SQL, LocalStack e AWS
+# Projeto: Engenharia de dados com Docker, Python, Spark, Delta, SQL, LocalStack e AWS
 
-#Como Executar o Projeto
+Este projeto demonstra a construção de um pipeline completo de Engenharia de Dados, simulando um ambiente próximo ao produtivo, com ingestão, processamento, validação, governança e disponibilização analítica de dados utilizando tecnologias amplamente adotadas no mercado.
+
+O pipeline foi desenvolvido com Apache Spark, Delta Lake e AWS (simulado via LocalStack), seguindo boas práticas de arquitetura de dados, como separação por camadas (Raw, Stage e Analytics), controle de qualidade de dados, versionamento de tabelas, processamento incremental e observabilidade por meio de logs e testes automatizados.
+
+Os dados de entrada são provenientes de um arquivo Excel contendo informações de clientes e endereços, que passam por regras de validação, enriquecimento e transformação até serem disponibilizados para consumo analítico. Todo o ambiente é containerizado com Docker, garantindo reprodutibilidade e facilidade de execução.
+
+Além do pipeline principal, o projeto inclui:
+
+Criação programática do Data Lake
+
+Processamento incremental com Delta Lake (MERGE)
+
+Testes de qualidade de dados com Pytest e Spark
+
+Validações analíticas via Spark SQL e Jupyter Notebook
+
+Estrutura preparada para integração com catálogo de dados e governança
+
+Este projeto foi pensado como um case técnico, evidenciando decisões arquiteturais, preocupação com qualidade, escalabilidade e organização de código, sendo ideal para portfólio e avaliações técnicas em Engenharia de Dados.
+
+# Como Executar o Projeto
 
 Este guia descreve o passo a passo para executar o projeto localmente utilizando Docker, Spark, Delta Lake e LocalStack, sem necessidade de uma conta AWS real.
 
-#1. Pré-requisitos
+# 1. Pré-requisitos
 
 Antes de iniciar, certifique-se de ter instalado:
 
@@ -24,33 +44,11 @@ Manual de instalação do Docker Desktop: https://docs.docker.com/desktop/setup/
 Verificar o WSL do Windows: https://docs.docker.com/desktop/setup/install/windows-install/#wsl-verification-and-setup
 
 
-#2. Estrutura do Projeto
+# 2. Estrutura do Projeto
 
-PROJETO-AWS-ETL/
-├── localstack-data/              # Dados persistidos do LocalStack
-├── scripts/
-│   └── projeto/
-│       ├── data/                 # Arquivos de entrada (Excel)
-│       ├── logs/                 # Logs de execução do pipeline
-│       ├── notebooks/            # Validações e análises em Jupyter
-│       ├── src/
-│       │   ├── athena/			  # Query para Analytics no Athena (Spark SQL)   
-│       │   ├── config/           # Configurações e variáveis de ambiente
-│       │   ├── infra/            # Infraestrutura (Glue, Catálogo Spark)
-│       │   ├── ingestao/         # Ingestão da camada Raw
-│       │   ├── processamento/    # Stage e Analytics
-│       │   ├── utils/            # SparkSession, Loggers
-│       │   └── validacao/        # Regras de validação de dados
-│       ├── tests/                # Testes pytest
-│       ├── pipeline.py           # Orquestração do pipeline
-│       ├── requirements.txt      # Dependências Python
-│       └── .env                  # Variáveis de ambiente
-├── docker-compose.yml            # Orquestração de containers
-├── Dockerfile                    # Ambiente Spark + Delta + S3A
-└── README.md                     # Documentação do projeto
+<img width="808" height="534" alt="image" src="https://github.com/user-attachments/assets/2f1d4fc2-dbdd-4f5d-bf88-0371d290647e" />
 
-
-#3. Configuração de Variáveis de Ambiente
+# 3. Configuração de Variáveis de Ambiente
 
 O arquivo .env já vem configurado para execução local com LocalStack:
 
@@ -70,7 +68,7 @@ S3_ANALYTICS_PATH=analytics
 🔹 Para execução em AWS real, basta ajustar as credenciais e remover o endpoint
 
 
-#4. Subir o Ambiente com Docker
+# 4. Subir o Ambiente com Docker
 
 O Docker ou Docker Desktop precisa estar em execução.
 
@@ -89,7 +87,7 @@ Esse comando irá:
 	* Montar o projeto dentro do container
 	
 
-#5. Acessar o Container
+# 5. Acessar o Container
 
 Para acessar o terminal do container Spark:
 
@@ -100,7 +98,7 @@ Dentro do container, navegue até o a pasta /repositorio/projeto:
 cd /repositorio/projeto
 
 
-#6. Criar a Estrutura do Data Lake (opcional)
+# 6. Criar a Estrutura do Data Lake (opcional)
 
 Caso queira criar manualmente o bucket no LocalStack:
 
@@ -109,7 +107,7 @@ aws --endpoint-url=http://localstack:4566 s3 mb s3://data-lake-local
 O pipeline cria essa estrutura automaticamente.
 
 
-#7. Executar o Pipeline Completo
+# 7. Executar o Pipeline Completo
 
 Para rodar todo o fluxo (Ingestão → Stage → Analytics):
 
@@ -128,7 +126,7 @@ Esse processo executa, na ordem:
 	* Geração de arquivos de logs
 
 
-#8. Validar os Dados no S3 (LocalStack)
+# 8. Validar os Dados no S3 (LocalStack)
 
 Listar o conteúdo do Data Lake:
 
@@ -141,7 +139,7 @@ stage/
 analytics/
 
 
-#9. Validação via Jupyter Notebook
+# 9. Validação via Jupyter Notebook
 
 Acesse o Jupyter Notebook no navegador ou via Docker Desktop:
 
@@ -162,7 +160,7 @@ Você encontrará notebooks para:
 	* Simulação de catálogo com Spark SQL
 	
 
-#10. Consultar Dados com Spark SQL
+# 10. Consultar Dados com Spark SQL
 
 http://localhost:8888
 
@@ -191,7 +189,7 @@ Esta query pode ser executada no Jupyter Notebook:
 /projeto/notebooks/catalogo_spark_sql.ipynb
 
 
-#11. Executação dos Testes (adicional)
+# 11. Executação dos Testes (adicional)
 
 No terminal ou prompt de comando, na raíz do projeto (pasta /repositorio/projeto/), execute os testes de validação:
 
@@ -243,7 +241,7 @@ Ao final das execuções:
 	* Pipeline totalmente reproduzível localmente
 
 
-#12. Encerrar o Ambiente
+# 12. Encerrar o Ambiente
 
 Sair do ambiente no Docker:
 
