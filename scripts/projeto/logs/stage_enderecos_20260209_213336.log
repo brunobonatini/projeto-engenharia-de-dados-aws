@@ -1,6 +1,0 @@
-2026-02-09 21:33:36 | INFO | stage_enderecos | Iniciando processamento Stage - Endereços
-2026-02-09 21:33:37 | INFO | stage_enderecos | Registros lidos da Raw: 12
-2026-02-09 21:33:37 | INFO | stage_enderecos | Registros após deduplicação: 11
-2026-02-09 21:33:37 | INFO | stage_enderecos | Tabela Delta não encontrada. Criando tabela Stage.
-2026-02-09 21:33:39 | INFO | stage_enderecos | Tabela Delta criada para Stage Endereços
-2026-02-09 21:33:39 | INFO | stage_enderecos | Stage endereços finalizado com sucesso

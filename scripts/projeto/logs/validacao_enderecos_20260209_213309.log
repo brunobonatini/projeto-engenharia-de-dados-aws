@@ -1,4 +1,0 @@
-2026-02-09 21:33:23 | WARNING | validacao_enderecos | Linha 9 | Campo: cep | Valor: 01310100 | Motivo: cep inválido
-2026-02-09 21:33:23 | WARNING | validacao_enderecos | Linha 11 | Campo: id_cliente | Valor: 999 | Motivo: cliente inexistente
-2026-02-09 21:33:23 | WARNING | validacao_enderecos | Linha 14 | Campo: data_evento | Valor: 2024-01-10 | Motivo: data inválida
-2026-02-09 21:33:23 | INFO | validacao_enderecos | Validação endereços concluída | Válidos: 12 | Inválidos: 3
