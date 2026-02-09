@@ -2,6 +2,8 @@
 
 # Projeto: Engenharia de dados com Docker, Python, Spark, Delta, SQL, LocalStack e AWS
 
+<img width="1024" height="1147" alt="projeto-engenharia-dados-aws" src="https://github.com/user-attachments/assets/faedbf2e-959d-4df5-b118-808c2afc044e" />
+
 Este projeto demonstra a construção de um pipeline completo de Engenharia de Dados, simulando um ambiente próximo ao produtivo, com ingestão, processamento, validação, governança e disponibilização analítica de dados utilizando tecnologias amplamente adotadas no mercado.
 
 O pipeline foi desenvolvido com Apache Spark, Delta Lake e AWS (simulado via LocalStack), seguindo boas práticas de arquitetura de dados, como separação por camadas (Raw, Stage e Analytics), controle de qualidade de dados, versionamento de tabelas, processamento incremental e observabilidade por meio de logs e testes automatizados.
