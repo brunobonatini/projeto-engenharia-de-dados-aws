@@ -12,12 +12,12 @@ ENV SPARK_SQL_EXTENSIONS=io.delta.sql.DeltaSparkSessionExtension
 ENV SPARK_SQL_CATALOG_SPARK_CATALOG=org.apache.spark.sql.delta.catalog.DeltaCatalog
 ENV IVY_HOME=/root/.ivy2
 
-# Baixar e Instalar o Apache Spark e pacotes do SO
+# Instalar o Apache Spark e pacotes do SO
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    curl python3 python3-pip python3-setuptools procps \
-    && curl -L "https://archive.apache.org/dist/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz" | tar -xz -C /opt/ \
-    && mv /opt/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION} /opt/spark \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+    python3 python3-pip python3-setuptools procps \
+ && rm -rf /var/lib/apt/lists/*
+
+COPY spark-3.5.3-bin-hadoop3 /opt/spark
 	
 # Hadoop AWS / S3A Connector
 RUN curl -L -o /opt/spark/jars/hadoop-aws-3.3.4.jar \

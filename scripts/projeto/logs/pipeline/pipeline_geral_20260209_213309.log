@@ -1,0 +1,11 @@
+2026-02-09 21:33:09 | INFO | pipeline_geral | ========================================
+2026-02-09 21:33:09 | INFO | pipeline_geral | INICIANDO PIPELINE DE ENGENHARIA DE DADOS
+2026-02-09 21:33:09 | INFO | pipeline_geral | ========================================
+2026-02-09 21:33:10 | INFO | pipeline_geral | Etapa 0 - Criação do Data Lake
+2026-02-09 21:33:10 | INFO | pipeline_geral | Etapa 1 - Ingestão Raw
+2026-02-09 21:33:28 | INFO | pipeline_geral | Etapa 2 - Stage Clientes
+2026-02-09 21:33:36 | INFO | pipeline_geral | Etapa 3 - Stage Endereços
+2026-02-09 21:33:39 | INFO | pipeline_geral | Etapa 4 - Analytics Clientes
+2026-02-09 21:33:46 | INFO | pipeline_geral | ========================================
+2026-02-09 21:33:46 | INFO | pipeline_geral | PIPELINE FINALIZADO COM SUCESSO
+2026-02-09 21:33:46 | INFO | pipeline_geral | ========================================

@@ -1,0 +1,7 @@
+2026-02-09 21:33:14 | WARNING | validacao_clientes | Linha 5 | Campo: email | Valor: nan | Motivo: formato inválido
+2026-02-09 21:33:14 | WARNING | validacao_clientes | Linha 10 | Campo: cpf | Valor: 12345678910 | Motivo: formato inválido
+2026-02-09 21:33:14 | WARNING | validacao_clientes | Linha 11 | Campo: email | Valor: invalido_email | Motivo: formato inválido
+2026-02-09 21:33:14 | WARNING | validacao_clientes | Linha 12 | Campo: status | Valor: pendente | Motivo: valor inválido
+2026-02-09 21:33:14 | WARNING | validacao_clientes | Linha 13 | Campo: data_nascimento | Valor: 01/01/1990 | Motivo: formato inválido
+2026-02-09 21:33:14 | WARNING | validacao_clientes | Linha 15 | Campo: nome | Valor: nan | Motivo: campo obrigatório
+2026-02-09 21:33:14 | INFO | validacao_clientes | Validação clientes concluída | Válidos: 10 | Inválidos: 6

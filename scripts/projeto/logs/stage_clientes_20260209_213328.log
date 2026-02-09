@@ -1,0 +1,6 @@
+2026-02-09 21:33:28 | INFO | stage_clientes | Iniciando processamento Stage - Clientes
+2026-02-09 21:33:29 | INFO | stage_clientes | Registros lidos da Raw: 10
+2026-02-09 21:33:30 | INFO | stage_clientes | Registros após deduplicação: 8
+2026-02-09 21:33:30 | INFO | stage_clientes | Tabela Delta não encontrada. Criando tabela Stage.
+2026-02-09 21:33:36 | INFO | stage_clientes | Tabela Delta criada para Stage Clientes
+2026-02-09 21:33:36 | INFO | stage_clientes | Stage clientes finalizado com sucesso

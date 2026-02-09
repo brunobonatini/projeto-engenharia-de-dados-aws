@@ -1,0 +1,8 @@
+2026-02-09 21:33:14 | INFO | ingestao_raw | Iniciando ingestão Raw
+2026-02-09 21:33:14 | INFO | ingestao_raw | Lendo aba CLIENTES do Excel
+2026-02-09 21:33:14 | INFO | ingestao_raw | Escrevendo clientes válidos na camada RAW
+2026-02-09 21:33:23 | INFO | ingestao_raw | Lendo aba ENDEREÇOS do Excel
+2026-02-09 21:33:23 | INFO | ingestao_raw | Escrevendo endereços válidos na camada RAW
+2026-02-09 21:33:26 | INFO | ingestao_raw | Ingestão Raw finalizada com sucesso
+2026-02-09 21:33:26 | INFO | ingestao_raw | Clientes válidos gravados: 10
+2026-02-09 21:33:27 | INFO | ingestao_raw | Endereços válidos gravados: 12
