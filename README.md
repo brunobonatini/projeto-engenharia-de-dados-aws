@@ -231,13 +231,13 @@ exit
 
 Para parar os containers:
 
-docker compose down
+	* docker compose down
 
 Para remover as imagens criadas (opcional):
 
-docker rmi projeto-engenharia-de-dados-aws-spark
+	* docker rmi projeto-engenharia-de-dados-aws-spark
 
-docker rmi localstack/localstack
+	* docker rmi localstack/localstack
 
 ======================================================================================================================	
 
