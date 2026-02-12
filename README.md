@@ -235,7 +235,7 @@ docker compose down
 
 Para remover as imagens criadas (opcional):
 
-docker rmi projeto-aws-etl-spark
+docker rmi projeto-engenharia-de-dados-aws-spark
 
 docker rmi localstack/localstack
 
