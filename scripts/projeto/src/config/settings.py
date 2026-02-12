@@ -2,6 +2,7 @@ from dataclasses import dataclass
 import os
 from dotenv import load_dotenv
 from datetime import datetime
+from typing import Optional
 
 load_dotenv()
 
@@ -17,7 +18,7 @@ class Settings:
     aws_secret_access_key: str = os.getenv("AWS_SECRET_ACCESS_KEY")
 
     # Endpoint (LocalStack ou AWS real)
-    aws_endpoint_url: str | None = os.getenv("AWS_ENDPOINT_URL")
+    aws_endpoint_url: Optional[str] = os.getenv("AWS_ENDPOINT_URL")
 
     # S3 paths (prefixos)
     s3_bucket: str = os.getenv("S3_BUCKET", "data-lake-local")
