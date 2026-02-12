@@ -229,7 +229,7 @@ No terminal ou prompt de comando, em /repositorio/projeto execute:
 
 exit
 
-Para parar os containers:
+Para parar os containers, na pasta do projeto execute:
 
 	* docker compose down
 
