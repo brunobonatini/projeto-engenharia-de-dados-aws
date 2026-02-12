@@ -36,7 +36,11 @@ Antes de iniciar, certifique-se de ter instalado:
 
 	* Docker Compose (v2+)
 
+	* Fazer download do projeto no Github
+
 	* Git (opcional, para clonar o repositório)
+	
+		git clone https://github.com/brunobonatini/projeto-engenharia-de-dados-aws.git
 
 ⚠️ Não é necessário instalar Java, Spark ou Python localmente.
 Todo o ambiente é provisionado via Docker.
