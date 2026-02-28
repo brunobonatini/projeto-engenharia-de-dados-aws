@@ -1,12 +1,8 @@
-# Criação dos testes para a camada RAW Clientes
-
 import logging
 
 logger = logging.getLogger(__name__)
 
-# =========================
-# RAW CLIENTES
-# =========================
+# Funções para testes em Raw Clientes
 
 def test_raw_clientes_nao_vazio(spark):
     logger.info("Iniciando teste: RAW clientes não vazio")

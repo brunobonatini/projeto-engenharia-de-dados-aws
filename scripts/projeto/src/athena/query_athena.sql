@@ -1,4 +1,4 @@
-# Query de validação (Athena) - Total de clientes e média de idade por estado
+-- Query de validação (Athena) - Total de clientes e média de idade por estado
 spark.sql("""
 SELECT
     estado,

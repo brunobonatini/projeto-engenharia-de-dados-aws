@@ -2,21 +2,18 @@ from pyspark.sql import functions as F
 from pyspark.sql.window import Window
 from pyspark.sql.types import IntegerType, StringType, DateType, TimestampType
 from delta.tables import DeltaTable
-
 from src.utils.spark_session import criar_spark_session
 from src.config.settings import settings
 from src.utils.logger import setup_logger
 
-
+# Função para processamentos de dados para camada de Analytics
 def processar_analytics_clientes():
     logger = setup_logger(name="analytics_clientes")
     spark = criar_spark_session()
 
     logger.info("Iniciando processamento da camada Analytics - Clientes")
-
-    # =========================
+    
     # Paths (S3A)
-    # =========================
     clientes_stage_path = (
         f"s3a://{settings.s3_bucket}/"
         f"{settings.s3_stage_path}/clientes/"
@@ -32,9 +29,7 @@ def processar_analytics_clientes():
         f"{settings.s3_analytics_path}/clientes/"
     )
 
-    # =========================
     # Leitura da Stage (Delta)
-    # =========================
     df_clientes = spark.read.format("delta").load(clientes_stage_path)
     df_enderecos = spark.read.format("delta").load(enderecos_stage_path)
 
@@ -43,17 +38,12 @@ def processar_analytics_clientes():
         f"enderecos: {df_enderecos.count()}"
     )
 
-    # =========================
     # Regra de negócio:
     # Apenas clientes ativos
-    # =========================
     df_clientes_ativos = df_clientes.filter(F.col("status") == "ativo")
 
-    # =========================
-    # LEFT JOIN
-    # - Mantém clientes sem endereço
-    # - Mantém múltiplos endereços
-    # =========================
+    # Mantém clientes sem endereço
+    # Mantém múltiplos endereços
     df_join = (
         df_clientes_ativos.alias("c")
         .join(
@@ -77,15 +67,10 @@ def processar_analytics_clientes():
         )
     )
 
-    # =========================
-    # Tratamento de clientes sem endereço
-    # =========================
-    
+    # Tratamento de clientes sem endereço    
     df_tratado = (
         df_join
-        # =========================
         # Tratamento de id_endereco
-        # =========================
         .withColumn(
             "id_endereco",
             F.when(
@@ -93,10 +78,6 @@ def processar_analytics_clientes():
                 F.lit(-1)
             ).otherwise(F.col("id_endereco"))
         )
-
-        # =========================
-        # Tratamento de campos textuais
-        # =========================
         .withColumn(
             "logradouro",
             F.when(
@@ -109,10 +90,7 @@ def processar_analytics_clientes():
         .withColumn("bairro", F.coalesce(F.col("bairro"), F.lit("Sem bairro")))
         .withColumn("cidade", F.coalesce(F.col("cidade"), F.lit("Sem cidade")))
         .withColumn("estado", F.coalesce(F.col("estado"), F.lit("Sem estado")))
-
-        # =========================
         # Tratamento data_atualizacao
-        # =========================
         .withColumn(
             "data_atualizacao",
             F.coalesce(
@@ -122,9 +100,7 @@ def processar_analytics_clientes():
         )
     )    
 
-    # =========================
     # Coluna calculada: idade
-    # =========================
     df_final = (
         df_tratado
         .withColumn(
@@ -138,9 +114,7 @@ def processar_analytics_clientes():
         )
     )
 
-    # =========================
-    # Escrita da camada Analytics
-    # =========================
+    # Escrita na camada Analytics
     (
         df_final
         .coalesce(1)

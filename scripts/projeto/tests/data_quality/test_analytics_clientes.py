@@ -1,12 +1,8 @@
-# Criação dos testes para a camada ANALYTICS Clientes
-
 import logging
 
 logger = logging.getLogger(__name__)
 
-# =========================
-# ANALYTICS CLIENTES
-# =========================
+# Funções para testes em Analytics Clientes
 
 def test_analytics_nao_vazio(spark):
     logger.info("Iniciando teste: Analytics clientes não vazio")

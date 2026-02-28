@@ -1,12 +1,8 @@
-# Criação dos testes para a camada STAGE Clientes
-
 import logging
 
 logger = logging.getLogger(__name__)
 
-# =========================
-# STAGE CLIENTES
-# =========================
+# Funções para testes em Stage Clientes
 
 def test_stage_clientes_sem_duplicidade(spark):
     logger.info("Iniciando teste: STAGE clientes sem duplicidade por id_cliente")

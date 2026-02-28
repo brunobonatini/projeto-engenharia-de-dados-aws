@@ -1,6 +1,7 @@
 import pandas as pd
 from src.validacao.validacao_enderecos import validar_enderecos
 
+# Funções para validações manuais
 def test_validar_endereco_com_cliente_existente():
     df_enderecos = pd.DataFrame([
         {

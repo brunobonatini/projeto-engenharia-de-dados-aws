@@ -3,14 +3,9 @@ import pandas as pd
 from typing import Tuple
 from src.utils.logger import setup_logger
 
-
 logger = setup_logger(name="validacao_enderecos")
 
-
-# =========================
-# Regras auxiliares
-# =========================
-
+# Funções de validações
 def campo_vazio(valor) -> bool:
     return valor is None or pd.isna(valor) or str(valor).strip() == ""
 
@@ -34,11 +29,7 @@ def validar_data(data: str) -> bool:
     except Exception:
         return False
 
-
-# =========================
-# Função principal
-# =========================
-
+# Função principal de validação
 def validar_enderecos(
     df_enderecos: pd.DataFrame,
     ids_clientes_validos: set
@@ -53,35 +44,25 @@ def validar_enderecos(
     for index, row in df_enderecos.iterrows():
         erros = []
 
-        # =========================
         # id_endereco
-        # =========================
         if campo_vazio(row.get("id_endereco")):
             erros.append(("id_endereco", row.get("id_endereco"), "campo obrigatório"))
 
-        # =========================
         # id_cliente (integridade referencial)
-        # =========================
         if campo_vazio(row.get("id_cliente")):
             erros.append(("id_cliente", row.get("id_cliente"), "campo obrigatório"))
         elif row.get("id_cliente") not in ids_clientes_validos:
             erros.append(("id_cliente", row.get("id_cliente"), "cliente inexistente"))
 
-        # =========================
         # cep
-        # =========================
         if campo_vazio(row.get("cep")) or not validar_cep(row.get("cep")):
             erros.append(("cep", row.get("cep"), "cep inválido"))
 
-        # =========================
         # data_evento
-        # =========================
         if campo_vazio(row.get("data_evento")) or not validar_data(row.get("data_evento")):
             erros.append(("data_evento", row.get("data_evento"), "data inválida"))
 
-        # =========================
         # Tratamento de erros
-        # =========================
         if erros:
             for campo, valor, motivo in erros:
                 logger.warning(

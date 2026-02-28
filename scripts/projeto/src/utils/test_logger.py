@@ -1,6 +1,7 @@
 import logging
 import os
 
+# Função para criar o logger para os testes
 def setup_test_logger(name: str, log_file: str):
     os.makedirs("logs", exist_ok=True)
 

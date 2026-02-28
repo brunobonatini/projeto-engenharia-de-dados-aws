@@ -1,12 +1,8 @@
-# Criação das funções de testes da camada RAW Endereços
-
 import logging
 
 logger = logging.getLogger(__name__)
 
-# =========================
-# RAW ENDEREÇOS
-# =========================
+# Funções para testes em Raw Enderecos
 
 def test_raw_enderecos_nao_vazio(spark):
     logger.info("Iniciando teste: RAW endereços não vazio")

@@ -2,21 +2,18 @@ from pyspark.sql import functions as F
 from pyspark.sql.window import Window
 from pyspark.sql.types import IntegerType, StringType, DateType, TimestampType
 from delta.tables import DeltaTable
-
 from src.utils.spark_session import criar_spark_session
 from src.config.settings import settings
 from src.utils.logger import setup_logger
 
-
+# Função para processar os dados para Stage Clientes
 def processar_stage_clientes():
     logger = setup_logger(name="stage_clientes")
     spark = criar_spark_session()
 
     logger.info("Iniciando processamento Stage - Clientes")
 
-    # =========================
     # Paths (S3A + Delta)
-    # =========================
     raw_path = (
         f"s3a://{settings.s3_bucket}/"
         f"{settings.s3_raw_path}/clientes/"
@@ -27,15 +24,11 @@ def processar_stage_clientes():
         f"{settings.s3_stage_path}/clientes/"
     )
 
-    # =========================
     # Leitura Raw
-    # =========================
     df_raw = spark.read.parquet(raw_path)
     logger.info(f"Registros lidos da Raw: {df_raw.count()}")
 
-    # =========================
-    # Tipagem explícita (Stage)
-    # =========================
+    # Padronização dos tipos de dados
     df_tipado = (
         df_raw
         .withColumn("id_cliente", F.col("id_cliente").cast(IntegerType()))
@@ -47,14 +40,10 @@ def processar_stage_clientes():
         .withColumn("data_evento", F.col("data_evento").cast(TimestampType()))
     )
 
-    # =========================
     # Filtro mínimo de integridade
-    # =========================
     df_tipado = df_tipado.filter(F.col("id_cliente").isNotNull())
 
-    # =========================
     # Deduplicação (último evento)
-    # =========================
     window = (
         Window
         .partitionBy("id_cliente")
@@ -71,9 +60,7 @@ def processar_stage_clientes():
 
     logger.info(f"Registros após deduplicação: {df_stage.count()}")
 
-    # =========================
-    # Escrita Stage com Delta Lake (MERGE)
-    # =========================
+    # Escrita na camada Stage com Delta Lake (MERGE)
     if DeltaTable.isDeltaTable(spark, stage_path):
         logger.info("Tabela Delta encontrada. Executando MERGE incremental.")
 

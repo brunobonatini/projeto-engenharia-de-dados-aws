@@ -20,31 +20,22 @@ def main():
     logger.info("========================================")
 
     try:
-        # =========================
         # Data Lake
-        # =========================
         logger.info("Etapa 0 - Criação do Data Lake")
         criar_data_lake()
 
-
-        # =========================
         # RAW
-        # =========================
         logger.info("Etapa 1 - Ingestão Raw")
         ingestao_raw()
 
-        # =========================
         # STAGE
-        # =========================
         logger.info("Etapa 2 - Stage Clientes")
         processar_stage_clientes()
 
         logger.info("Etapa 3 - Stage Endereços")
         processar_stage_enderecos()
 
-        # =========================
         # ANALYTICS
-        # =========================
         logger.info("Etapa 4 - Analytics Clientes")
         processar_analytics_clientes()
 

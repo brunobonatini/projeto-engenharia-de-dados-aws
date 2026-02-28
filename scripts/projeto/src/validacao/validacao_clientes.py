@@ -3,15 +3,12 @@ import pandas as pd
 from typing import Tuple
 from src.utils.logger import setup_logger
 
-
 logger = setup_logger(name="validacao_clientes")
 
-# =========================
 # Regras auxiliares
-# =========================
-
 STATUS_VALIDOS = {"ativo", "inativo", "suspenso"}
 
+# Funções de validações
 def campo_vazio(valor) -> bool:
     return valor is None or pd.isna(valor) or str(valor).strip() == ""
 
@@ -38,11 +35,7 @@ def validar_data(data: str) -> bool:
     except Exception:
         return False
 
-
-# =========================
-# Função principal
-# =========================
-
+# Função principal de validação
 def validar_clientes(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame]:
     """
     Valida os dados de clientes conforme regras do case.
@@ -58,52 +51,37 @@ def validar_clientes(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame]:
     for index, row in df.iterrows():
         erros = []
 
-        # =========================
         # id_cliente
-        # =========================
         if campo_vazio(row.get("id_cliente")):
             erros.append(("id_cliente", row.get("id_cliente"), "campo obrigatório"))
 
-        # =========================
         # nome
-        # =========================
         if campo_vazio(row.get("nome")):
             erros.append(("nome", row.get("nome"), "campo obrigatório"))
 
-        # =========================
         # cpf
-        # =========================
         if campo_vazio(row.get("cpf")):
             erros.append(("cpf", row.get("cpf"), "campo obrigatório"))
         elif not validar_cpf(row.get("cpf")):
             erros.append(("cpf", row.get("cpf"), "formato inválido"))
 
-        # =========================
         # data_nascimento
-        # =========================
         if campo_vazio(row.get("data_nascimento")):
             erros.append(("data_nascimento", row.get("data_nascimento"), "campo obrigatório"))
         elif not validar_data(row.get("data_nascimento")):
             erros.append(("data_nascimento", row.get("data_nascimento"), "formato inválido"))
 
-        # =========================
         # status
-        # =========================
         if campo_vazio(row.get("status")):
             erros.append(("status", row.get("status"), "campo obrigatório"))
         elif row.get("status") not in STATUS_VALIDOS:
             erros.append(("status", row.get("status"), "valor inválido"))
 
-
-        # =========================
         # email (opcional)
-        # =========================
         if not validar_email(row.get("email")):
             erros.append(("email", row.get("email"), "formato inválido"))
 
-        # =========================
         # Tratamento de erros
-        # =========================
         if erros:
             for campo, valor, motivo in erros:
                 logger.warning(

@@ -1,12 +1,8 @@
-# Criação das funções de testes da camada STAGE Endereços
-
 import logging
 
 logger = logging.getLogger(__name__)
 
-# =========================
-# STAGE ENDEREÇOS
-# =========================
+# Funções para testes em Stage Enderecos
 
 def test_stage_enderecos_nao_vazio(spark):
     logger.info("Iniciando teste: STAGE endereços não vazio")

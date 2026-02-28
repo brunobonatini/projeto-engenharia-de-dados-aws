@@ -3,7 +3,7 @@ from botocore.exceptions import ClientError
 from src.config.settings import settings
 from src.utils.logger import setup_logger
 
-
+# Função para criar o bucket no Data Lake
 def criar_data_lake():
     """
     Cria o bucket do Data Lake e estrutura base (raw, stage, analytics).
@@ -20,10 +20,8 @@ def criar_data_lake():
     )
 
     bucket = settings.s3_bucket
-
-    # =========================
+    
     # Criar bucket (se não existir)
-    # =========================
     try:
         s3.head_bucket(Bucket=bucket)
         logger.info(f"Bucket '{bucket}' já existe")

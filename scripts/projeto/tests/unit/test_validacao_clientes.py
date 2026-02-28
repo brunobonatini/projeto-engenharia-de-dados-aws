@@ -1,6 +1,7 @@
 import pandas as pd
 from src.validacao.validacao_clientes import validar_clientes
 
+# Funções para validações manuais
 def test_validar_clientes_com_registro_valido():
     df = pd.DataFrame([
         {

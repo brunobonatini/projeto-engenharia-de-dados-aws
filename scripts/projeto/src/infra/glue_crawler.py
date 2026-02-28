@@ -1,7 +1,7 @@
 import boto3
 from src.config.settings import settings
 
-
+# Função para criar ou atualizar o crawler
 def criar_ou_atualizar_crawler():
     glue = boto3.client(
         "glue",

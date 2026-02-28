@@ -3,17 +3,12 @@ import os
 import logging
 import pytest
 
-# =========================
 # Ajuste de PATH
-# =========================
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.insert(0, PROJECT_ROOT)
 
-# =========================
-# Fixture de Spark
-# =========================
+# Fixture do Spark
 from src.utils.spark_session import criar_spark_session
-
 
 @pytest.fixture(scope="session")
 def spark():
@@ -21,10 +16,7 @@ def spark():
     yield spark
     spark.stop()
 
-
-# =========================
 # Logging dos testes
-# =========================
 @pytest.fixture(scope="session", autouse=True)
 def configurar_logging_testes():
     log_dir = "logs/tests"

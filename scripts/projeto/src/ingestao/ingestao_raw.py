@@ -7,7 +7,7 @@ from src.utils.spark_session import criar_spark_session
 from src.validacao.validacao_clientes import validar_clientes
 from src.validacao.validacao_enderecos import validar_enderecos
 
-
+# Função para fazer a ingestão dos dados na camada raw
 def ingestao_raw():
     logger = setup_logger(name="ingestao_raw")
     spark: SparkSession = criar_spark_session()
@@ -17,9 +17,7 @@ def ingestao_raw():
     # Caminho do Excel dentro do container
     path = "data/dados_entrada.xlsx"
 
-    # =========================
-    # CLIENTES
-    # =========================
+    # Cientes
     logger.info("Lendo aba CLIENTES do Excel")
     df_clientes = pd.read_excel(
         path,
@@ -59,9 +57,7 @@ def ingestao_raw():
     else:
         logger.warning("Nenhum cliente válido encontrado")
 
-    # =========================
-    # ENDEREÇOS
-    # =========================
+    # Endereços
     logger.info("Lendo aba ENDEREÇOS do Excel")
     df_enderecos = pd.read_excel(
         path,
