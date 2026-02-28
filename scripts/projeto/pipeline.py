@@ -8,7 +8,6 @@ from datetime import datetime
 
 # Função principal de execução do Pipeline
 def main():
-    
     # Definição do arquivo de log do pipeline
     logger = setup_logger(
         name="pipeline_geral",
